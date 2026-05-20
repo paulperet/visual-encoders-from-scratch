@@ -103,15 +103,15 @@ $$p_{\theta} (z \mid x) = \frac{p_{\theta} (x \mid z)p_{\theta} (z)}{p_{\theta} 
 
 While we can compute the joint distribution, the marginal $$p_{\theta} (x)$$ is intractible. It cannot be easily computed analytically and the computational cost of approximating the denominator scales exponentially according to the domain of latent variables.
 
-So instead of computing the posterior directly, we choose a surrogate function (simpler function) to approximate the original distribution:
+So instead of computing the posterior directly, we choose a surrogate function (simpler function) with parameters $$\phi$$ to approximate the original distribution:
 
 $$q_{\phi} (z \mid x) \approx p_{\theta} (z \mid x)$$
 
 ##### Finding a surrogate via optimization
 
-Thanks to this we can now express our problem as an optimization problem:
+Thanks to this we can now express our problem as an optimization problem.
 
-$$q^*(z \mid x) = argmin_{q_{\phi} (z \mid x) \in Q} (D_{KL}(q_{\phi} (z \mid x) \mathrel{\Vert} p_{\theta} (z \mid x))$$
+$$\phi^* = argmin_{\phi \in \mathbb{R_{+}}} (D_{KL}(q_{\phi} (z \mid x) \mathrel{\Vert} p_{\theta} (z \mid x))$$
 
 The Kullback–Leibler divergence expresses the difference between two distributions. Our goal is to minimize this distance so that our surrogate function best capture the original distribution. But we still have a problem:
 
@@ -146,8 +146,8 @@ Hence, to fullfill these conditions, we can infer that $$\mathcal{L}(q)$$ has to
 
 $$
 \begin{align*}
-q^* (z) &= argmin_{q_{\phi} (z \mid x) \in Q} (KL(q_{\phi} (z \mid x) \mathrel{\Vert} p_{\theta} (z \mid x))) \\
-&= argmax_{q_{\phi} (z \mid x) \in Q} (\mathcal{L}(q))
+\phi^* &= argmin_{\phi \in \mathbb{R_{+}}} (D_{KL}(q_{\phi} (z \mid x) \mathrel{\Vert} p_{\theta} (z \mid x)) \\
+&= argmax_{\phi \in \mathbb{R}}(\mathcal{L}(\theta))
 \end{align*}
 $$
 
