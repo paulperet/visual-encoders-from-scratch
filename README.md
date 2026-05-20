@@ -81,7 +81,24 @@ The decoder is a reversed version of the encoder, where the convolutional layers
 
 ### Autoencoders
 
+<p align="center">
+<img width="423" height="221" alt="ae-design1" src="https://github.com/user-attachments/assets/47a2b1da-7bcd-4de7-8d40-b3cde4fa7e5d" />
+</p>
+
+Autoencoders simply map each image to a vector z in its latent space. The training objective of an autoencoder is to reconstruct the input as well as possible. Their main issue is that the latent space is not organized, so sampling from it creates nonsensical data.
+
 ### Variational Autoencoders
+<p align="center">
+  <img width="357" height="230" alt="vae-design2" src="https://github.com/user-attachments/assets/fc9d6e76-3784-4a47-a560-bbad1479d2b8" />
+</p>
+
+Variational autoencoders add a regularization term over the latent space to organize it in such a way that sampling from it generates new meaningful data. It also forces each dimension to encode something specific about the data (e.g. hair color, head position, smile). Increasing the $$\beta$$ term further push this behaviour [4].
+
+Variational autoencoders use sampling before decoding, with the encoder outputs representing the mean and variance of the distribution. The sampling operation is implemented using the "reparametrization trick", which enables the randomness of sampling to be separated from the architecture, allowing backpropagation.
+
+Therefore we can compute z using the two outputs vectors of our encoder, $$\mu$$ and $$\sigma$$:
+
+$$z = \mu + \sigma\epsilon\text{, with } \epsilon \sim \mathcal{N}(0,1) \text{ in the univariate Gaussian case}$$
 
 #### Directed Graphical Model
 
