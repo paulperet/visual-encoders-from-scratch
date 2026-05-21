@@ -164,7 +164,7 @@ Hence, to fullfill these conditions, we can infer that $$\mathcal{L}(q)$$ has to
 $$
 \begin{align*}
 \phi^* &= argmin_{\phi \in \mathbb{R_{+}}} (D_{KL}(q_{\phi} (z \mid x) \mathrel{\Vert} p_{\theta} (z \mid x)) \\
-&= argmax_{\phi \in \mathbb{R}}(\mathcal{L}(\theta))
+&= argmax_{\phi \in \mathbb{R_{+}}}(\mathcal{L}(\theta))
 \end{align*}
 $$
 
